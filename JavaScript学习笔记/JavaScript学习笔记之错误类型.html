@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Error 实例对象JavaScript 在解析或者运行的时候发生错误，引擎就会跑出一个错误对象。JavaScript 原生提供Error构造函数，所有抛出的错误都是这个构造函数的实例。 12var err = new Error(&apos;我出错了&apos;);err.message; //&quot;我出错了&quot;">
+<meta name="keywords" content="JavaScript学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记 - 错误类型">
+<meta property="og:url" content="https://ife.adcdn.cc/JavaScript学习笔记/JavaScript学习笔记之错误类型.html">
+<meta property="og:site_name" content="2018IFE Notes">
+<meta property="og:description" content="Error 实例对象JavaScript 在解析或者运行的时候发生错误，引擎就会跑出一个错误对象。JavaScript 原生提供Error构造函数，所有抛出的错误都是这个构造函数的实例。 12var err = new Error(&apos;我出错了&apos;);err.message; //&quot;我出错了&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-01T01:48:19.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript学习笔记 - 错误类型">
+<meta name="twitter:description" content="Error 实例对象JavaScript 在解析或者运行的时候发生错误，引擎就会跑出一个错误对象。JavaScript 原生提供Error构造函数，所有抛出的错误都是这个构造函数的实例。 12var err = new Error(&apos;我出错了&apos;);err.message; //&quot;我出错了&quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ife.adcdn.cc/JavaScript学习笔记/JavaScript学习笔记之错误类型.html"/>
+
+
+
+
+
+  <title>JavaScript学习笔记 - 错误类型 | 2018IFE Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2018IFE Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ife.adcdn.cc/JavaScript学习笔记/JavaScript学习笔记之错误类型.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PillarKerr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://aw.adcdn.cc/images/2018/03/30/b42b673fa9468d314a8b93e1d0faec29.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2018IFE Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript学习笔记 - 错误类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-12T00:00:00+08:00">
+                2016-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-line-chart"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Error-实例对象"><a href="#Error-实例对象" class="headerlink" title="Error 实例对象"></a>Error 实例对象</h2><p>JavaScript 在解析或者运行的时候发生错误，引擎就会跑出一个错误对象。JavaScript 原生提供<code>Error</code>构造函数，所有抛出的错误都是这个构造函数的实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'我出错了'</span>);</span><br><span class="line">err.message; <span class="comment">//"我出错了"</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>JavaScript 语言标准中提到，<code>Error</code>实例必须有<code>message</code>属性，表示出错时的提示信息，没有提到其他属性。大多数 JavaScript 引擎，对<code>Error</code>实例还提供了<code>name</code>和<code>stack</code>属性。</p>
+<ul>
+<li><strong>message</strong>: 错误提示信息</li>
+<li><strong>name</strong>：错误名称（非标准属性）</li>
+<li><strong>stack</strong>: 错误的堆栈（非标准属性）</li>
+</ul>
+<p>使用<code>name</code>和<code>message</code>这两个属性，能够对发生的错误有个大概的了解。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是否存在`name`属性</span></span><br><span class="line"><span class="keyword">if</span> (error.name) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error.name + <span class="string">': '</span> + error.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>stack</code>属性用来查看错误发生时的堆栈，看个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throwit</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">catchit</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        throwit();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e.stack);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">catchit();</span><br><span class="line"><span class="comment">//Error</span></span><br><span class="line"><span class="comment">//    at throwit (demo.html:18)</span></span><br><span class="line"><span class="comment">//    at catchit (demo.html:23)</span></span><br><span class="line"><span class="comment">//    at demo.html:29</span></span><br></pre></td></tr></table></figure>
+<p>在上边的代码中，错误堆栈最内层是<code>throwit</code>函数，然后是<code>catchit</code>函数，最后是函数的运行环境。</p>
+<h2 id="原生错误类型"><a href="#原生错误类型" class="headerlink" title="原生错误类型"></a>原生错误类型</h2><p><code>Error</code>实例对象是最一般的错误类型，<code>Error</code>还存在 6 个派生对象。</p>
+<h3 id="SyntaxError-对象"><a href="#SyntaxError-对象" class="headerlink" title="SyntaxError 对象"></a>SyntaxError 对象</h3><p>syntax,读音<code>[ˈsɪntæks]</code>,意思是语句（语法），<code>SyntaxError</code>对象是解析代码时发生语法错误。看几个栗子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//变量名以数字开头</span></span><br><span class="line"><span class="keyword">var</span> <span class="number">1</span>a;</span><br><span class="line"><span class="comment">//Uncaught SyntaxError: Invalid or unexpected token</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//缺少括号</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello'</span>;</span><br><span class="line"><span class="comment">//missing ) after argument list</span></span><br></pre></td></tr></table></figure>
+<h3 id="ReferenceError-对象"><a href="#ReferenceError-对象" class="headerlink" title="ReferenceError 对象"></a>ReferenceError 对象</h3><p><code>reference</code>，读音<code>[ˈrefrəns]</code>，意思是引用（参照），<code>ReferenceError</code>对象是引用一个不存在的变量时发生的错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unkonwnVariable;</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: unkonwnVariable is not defined</span></span><br></pre></td></tr></table></figure>
+<p>另一个触发场景是，将一个值分配给无法分配的对象，比如函数的运行结果或者<code>this</code>赋值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log() = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: Invalid left-hand side in assignment</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: Invalid left-hand side in assignment</span></span><br></pre></td></tr></table></figure>
+<h3 id="RangeError-对象"><a href="#RangeError-对象" class="headerlink" title="RangeError 对象"></a>RangeError 对象</h3><p><code>range</code>，读音<code>[reɪndʒ]</code>，意思是范围。<code>RangeError</code>对象是一个值超出有效范围时发生的错误。常见的有数组长度为负数或者<code>Number</code>对象的方法参数超出范围，以及函数堆栈超过最大值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">-1</span>);</span><br><span class="line"><span class="comment">//Uncaught RangeError: Invalid array length</span></span><br></pre></td></tr></table></figure>
+<h3 id="TypeError-对象"><a href="#TypeError-对象" class="headerlink" title="TypeError 对象"></a>TypeError 对象</h3><p><code>TypeError</code>对象是变量或参数不是预期类型时发生的错误。比如对字符串、布尔值、数值等原始类型使用<code>new</code>命令，就会抛出这种错误，因为<code>new</code>命令的参数应该是一个构造函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">obj.unknownMethod();</span><br><span class="line"><span class="comment">//// Uncaught TypeError: obj.unknownMethod is not a function</span></span><br></pre></td></tr></table></figure>
+<h3 id="URIError-对象"><a href="#URIError-对象" class="headerlink" title="URIError 对象"></a>URIError 对象</h3><p><code>URIError</code>对象是 URI 相关函数参数不正确时抛出的错误，主要涉及<code>encodeURI()</code>、<code>decodeURI()</code>、<code>encodeURIComponent()</code>、<code>decodeURIComponent()</code>、<code>escape()</code>和<code>unescape()</code>这六个函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">decodeURI</span>(<span class="string">'%2'</span>);</span><br><span class="line"><span class="comment">// URIError: URI malformed</span></span><br></pre></td></tr></table></figure>
+<h3 id="EvalError-对象"><a href="#EvalError-对象" class="headerlink" title="EvalError 对象"></a>EvalError 对象</h3><p><code>eval</code>函数没有被正确执行，会抛出<code>EvalError</code>错误。该错误类型已不再使用，只是为了保证与以前代码兼容，才继续保留。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上 6 种派生错误，连同原始的<code>Error</code>对象，都是构造函数，开发者可以手动生成错误对象的实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> err1 = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'出错了'</span>);</span><br><span class="line"><span class="keyword">var</span> err2 = <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'变量超出有效范围'</span>);</span><br><span class="line"><span class="keyword">var</span> err3 = <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'变量类型无效'</span>);</span><br><span class="line"><span class="keyword">var</span> err4 = <span class="keyword">new</span> <span class="built_in">SyntaxError</span>(<span class="string">'语法错误'</span>);</span><br><span class="line"><span class="keyword">var</span> err5 = <span class="keyword">new</span> <span class="built_in">ReferenceError</span>(<span class="string">'引用错误'</span>);</span><br><span class="line"></span><br><span class="line">err1.message; <span class="comment">//"出错了"</span></span><br><span class="line">err2.message; <span class="comment">//"变量超出有效范围"</span></span><br><span class="line">err3.message; <span class="comment">//"变量类型无效"</span></span><br><span class="line">err4.message; <span class="comment">//"语法错误"</span></span><br><span class="line">err5.message; <span class="comment">//"引用错误"</span></span><br></pre></td></tr></table></figure>
+<h2 id="throw-语句"><a href="#throw-语句" class="headerlink" title="throw 语句"></a>throw 语句</h2><p><code>throw</code>语句的作用是手动中断程序执行，抛出一个错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">if</span> (x &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'x 必须为正数'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//  Uncaught Error: x 必须为正数</span></span><br></pre></td></tr></table></figure>
+<p>上边这个例子，如果<code>x</code>小于等于<code>0</code>，就手动抛出一个错误，整个程序会在这里中断执行。</p>
+<p><code>throw</code>也可以抛出自定义错误，演示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DateError</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.message = message || <span class="string">'日期不合法'</span>;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'DateError'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> DateError(<span class="string">'年份不能大于当前年份'</span>);</span><br><span class="line"><span class="comment">// Uncaught DateError &#123;message: "年份不能大于当前年份", name: "DateError"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>除此之外，<code>throw</code>可以抛出任何类型的值，也就是说它的参数可以是任何值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="string">`Error`</span>;</span><br><span class="line"><span class="comment">//Uncaught Error</span></span><br><span class="line"><span class="keyword">throw</span> <span class="number">11</span>;</span><br><span class="line"><span class="comment">//Uncaught 11</span></span><br><span class="line"><span class="keyword">throw</span> <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//Uncaught true</span></span><br></pre></td></tr></table></figure>
+<p>对于 JavaScript 引擎来说，遇到<code>throw</code>程序就中止了。引擎接受到<code>throw</code>抛出的信息，可以是一个错误实例，也可以是其他类型的值。</p>
+<h2 id="try-catch-结构"><a href="#try-catch-结构" class="headerlink" title="try..catch 结构"></a>try..catch 结构</h2><p>一旦发生错误，程序就中止执行，JS 提供了<code>try...catch</code>结构，允许对错误进行处理，选择是否往下执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'出错了!'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.name + <span class="string">': '</span> + e.message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'我还可以继续执行!'</span>);</span><br><span class="line"><span class="comment">//Error: 出错了!</span></span><br><span class="line"><span class="comment">//我还可以继续执行!</span></span><br></pre></td></tr></table></figure>
+<h2 id="finally-代码块"><a href="#finally-代码块" class="headerlink" title="finally 代码块"></a>finally 代码块</h2><p><code>try...catch</code>结构允许在最后一个<code>finally</code>代码块，表示不管是否出现错误，都必须在最后执行的语句。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cleanUp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'发生错误'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'我不会被执行!'</span>);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'清理完成！'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">cleanUp();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'我不能继续执行了'</span>);</span><br><span class="line"><span class="comment">//  清理完成</span></span><br><span class="line"><span class="comment">// Uncaught Error: 发生错误</span></span><br></pre></td></tr></table></figure>
+<p>上边的栗子，由于没有<code>catch</code>，错误没有被捕获。执行<code>finally</code>代码以后，程序就中断在出错的地方了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <p style="text-align:center;font-weight:600">- 正文完 -</p>
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>老铁觉得不错，就刷波火箭呗！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="PillarKerr 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="PillarKerr 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript学习笔记/" rel="tag"># JavaScript学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JavaScript学习笔记/JavaScript学习笔记之函数.html" rel="next" title="JavaScript学习笔记 - 函数">
+                <i class="fa fa-chevron-left"></i> JavaScript学习笔记 - 函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript学习笔记/JavaScript学习笔记 - console对象与控制台.html" rel="prev" title="JavaScript学习笔记 - console对象与控制台">
+                JavaScript学习笔记 - console对象与控制台 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://aw.adcdn.cc/images/2018/03/30/b42b673fa9468d314a8b93e1d0faec29.jpg"
+                alt="PillarKerr" />
+            
+              <p class="site-author-name" itemprop="name">PillarKerr</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DarrylKerr" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:job@cherrycookies.cc‍" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.instagram.com/konersunshine/" target="_blank" title="Instagram">
+                    
+                      <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/yy0115dd1017" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-实例对象"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Error-&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;" class="headerlink" title="Error &#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;"></a>Error &#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生错误类型"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x539F;&#x751F;&#x9519;&#x8BEF;&#x7C7B;&#x578B;" class="headerlink" title="&#x539F;&#x751F;&#x9519;&#x8BEF;&#x7C7B;&#x578B;"></a>&#x539F;&#x751F;&#x9519;&#x8BEF;&#x7C7B;&#x578B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SyntaxError-对象"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#SyntaxError-&#x5BF9;&#x8C61;" class="headerlink" title="SyntaxError &#x5BF9;&#x8C61;"></a>SyntaxError &#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReferenceError-对象"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#ReferenceError-&#x5BF9;&#x8C61;" class="headerlink" title="ReferenceError &#x5BF9;&#x8C61;"></a>ReferenceError &#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RangeError-对象"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#RangeError-&#x5BF9;&#x8C61;" class="headerlink" title="RangeError &#x5BF9;&#x8C61;"></a>RangeError &#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeError-对象"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#TypeError-&#x5BF9;&#x8C61;" class="headerlink" title="TypeError &#x5BF9;&#x8C61;"></a>TypeError &#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URIError-对象"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#URIError-&#x5BF9;&#x8C61;" class="headerlink" title="URIError &#x5BF9;&#x8C61;"></a>URIError &#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EvalError-对象"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#EvalError-&#x5BF9;&#x8C61;" class="headerlink" title="EvalError &#x5BF9;&#x8C61;"></a>EvalError &#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.7.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#throw-语句"><span class="nav-number">3.</span> <span class="nav-text"><a href="#throw-&#x8BED;&#x53E5;" class="headerlink" title="throw &#x8BED;&#x53E5;"></a>throw &#x8BED;&#x53E5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#try-catch-结构"><span class="nav-number">4.</span> <span class="nav-text"><a href="#try-catch-&#x7ED3;&#x6784;" class="headerlink" title="try..catch &#x7ED3;&#x6784;"></a>try..catch &#x7ED3;&#x6784;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#finally-代码块"><span class="nav-number">5.</span> <span class="nav-text"><a href="#finally-&#x4EE3;&#x7801;&#x5757;" class="headerlink" title="finally &#x4EE3;&#x7801;&#x5757;"></a>finally &#x4EE3;&#x7801;&#x5757;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PillarKerr</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

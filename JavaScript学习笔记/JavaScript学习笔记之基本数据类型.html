@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="null 和 undefined概述null 和 undefined 的效果几乎没有区别，都表示没有，在 if 语句中，它们都会被转成false，相等运算符（==）认为两者是相等的，如下： 123456789101112if (!null) &amp;#123;    console.log(&apos;null is false!&apos;);&amp;#125;//null is false!if (!undefined) &amp;">
+<meta name="keywords" content="JavaScript学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记 - 数据类型">
+<meta property="og:url" content="https://ife.adcdn.cc/JavaScript学习笔记/JavaScript学习笔记之基本数据类型.html">
+<meta property="og:site_name" content="2018IFE Notes">
+<meta property="og:description" content="null 和 undefined概述null 和 undefined 的效果几乎没有区别，都表示没有，在 if 语句中，它们都会被转成false，相等运算符（==）认为两者是相等的，如下： 123456789101112if (!null) &amp;#123;    console.log(&apos;null is false!&apos;);&amp;#125;//null is false!if (!undefined) &amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-26T10:03:48.960Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript学习笔记 - 数据类型">
+<meta name="twitter:description" content="null 和 undefined概述null 和 undefined 的效果几乎没有区别，都表示没有，在 if 语句中，它们都会被转成false，相等运算符（==）认为两者是相等的，如下： 123456789101112if (!null) &amp;#123;    console.log(&apos;null is false!&apos;);&amp;#125;//null is false!if (!undefined) &amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ife.adcdn.cc/JavaScript学习笔记/JavaScript学习笔记之基本数据类型.html"/>
+
+
+
+
+
+  <title>JavaScript学习笔记 - 数据类型 | 2018IFE Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2018IFE Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ife.adcdn.cc/JavaScript学习笔记/JavaScript学习笔记之基本数据类型.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PillarKerr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://aw.adcdn.cc/images/2018/03/30/b42b673fa9468d314a8b93e1d0faec29.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2018IFE Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript学习笔记 - 数据类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-24T00:00:00+08:00">
+                2016-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-line-chart"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="null-和-undefined"><a href="#null-和-undefined" class="headerlink" title="null 和 undefined"></a>null 和 undefined</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>null 和 undefined 的效果几乎没有区别，都表示没有，在 if 语句中，它们都会被转成<code>false</code>，相等运算符（==）认为两者是相等的，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'null is false!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//null is false!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'undefined is false!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//undefined is false!</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">undefined</span>);</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="用法和含义"><a href="#用法和含义" class="headerlink" title="用法和含义"></a>用法和含义</h3><p>null 表示为空，即该处的值为空，在调用函数时，如果传入的参数未设置任何值，这时候它就是 null。</p>
+<p>undefined 表示未定义，以下是几个经典场景：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明变量未赋值</span></span><br><span class="line"><span class="keyword">var</span> $x;</span><br><span class="line">$x; <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//调用函数时未提供参数，该参数为undefined</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">$x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $x;</span><br><span class="line">&#125;</span><br><span class="line">foo(); <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象没有赋值的属性</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.name; <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//函数无返回值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">fo(); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<h2 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h2><p>布尔值代表真假两个状态，真用<code>true</code>表示，假用<code>false</code>表示。会返回布尔值的运算符：</p>
+<ul>
+<li>前置逻辑运算符: <code>!</code></li>
+<li>相等运算符：<code>==</code>、<code>===</code>、<code>!=</code>、<code>!==</code></li>
+<li>比较运算符：<code>&lt;=</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&gt;</code></li>
+</ul>
+<p>如果某个预期位置上是布尔值，则该位置上的值会被自动转换为布尔值，除了以下值会被转换为<code>false</code>之外：</p>
+<ul>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>&#39; &#39;</code>或<code>&quot; &quot;</code> (空字符串)</li>
+<li><code>0</code></li>
+<li><code>NaN</code></li>
+<li><code>false</code></li>
+</ul>
+<p>其余都会被转换为<code>true</code><br>这里有个容易搞错的是，<code>空数组</code>和<code>空对象</code>都会被转换为<code>true</code>，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ([]) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'true'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (&#123;&#125;) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'true'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>JavaScript 内部所有数字都是以 64 位浮点数形式存储，整数也是如此，所以 1 和 1.0 是相等的，是同一个数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> === <span class="number">1.0</span>; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>某些运算只有整数才能完成，此时 JavaScript 会自动把 64 位浮点数转换为 32 位整数，再进行运算。因为浮点数会有不精确的问题，所以在进行小数运算时会产生匪夷所思的结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> === <span class="number">0.3</span>;</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="number">0.3</span> / <span class="number">0.1</span>;</span><br><span class="line"><span class="comment">//2.9999999999999996</span></span><br></pre></td></tr></table></figure>
+<h3 id="数值精度"><a href="#数值精度" class="headerlink" title="数值精度"></a>数值精度</h3><p>根据国际标准 <code>IEEE 754</code>,JavaScript 浮点数的 64 个二进制位，由三部分组成：</p>
+<ul>
+<li>第 1 位：符号位，<code>0</code>表示正数，<code>1</code>表示负数</li>
+<li>2 ~ 12 位（共 11 位）：指数部分</li>
+<li>13 ~ 64 （52）：小数部分</li>
+</ul>
+<p>符号决定一个数的正负，指数决定数值的大小，小数决定数值的精度</p>
+<p>指数部分一共有 11 个二进制位，因此大小范围就是 0 到 2047。IEEE 754 规定，如果指数部分的值在 0 到 2047 之间（不含两个端点），那么有效数字的第一位默认总是 1，不保存在 64 位浮点数之中。也就是说，有效数字这时总是 1.xx…xx 的形式，其中 xx..xx 的部分保存在 64 位浮点数之中，最长可能为 52 位。因此，JavaScript 提供的有效数字最长为 53 个二进制位。</p>
+<p>精度最多只能到 53 个二进制位，这意味着，绝对值小于 2 的 53 次方的整数，即<code>-2^53</code> 到 <code>2^53</code>，都可以精确表示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>);</span><br><span class="line"><span class="comment">// 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">2</span>;</span><br><span class="line"><span class="comment">// 9007199254740994</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">3</span>;</span><br><span class="line"><span class="comment">// 9007199254740996</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">4</span>;</span><br><span class="line"><span class="comment">// 9007199254740996</span></span><br></pre></td></tr></table></figure>
+<p>如上可以看到，在大于 2 的 53 次方之后，整数运算开始出现错误。所以，大于 2 的 53 次方的数值都无法保持精度。2 的 53 次方是 16 位的十进制数，所以，简单的判断规则是 JavaScript 对 15 位的十进制数都可以精确处理。</p>
+<h3 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h3><p>根据标准，指数部分的长度是 11 个二进制位，意味着指数最大值是<code>2^11 - 1</code>。分出一半表示负数，则 JavaScript 可以表示数值范围是<code>2^1024</code>到<code>2^-1023</code>，超出这个范围无法表示。</p>
+<h3 id="数值的表示方法"><a href="#数值的表示方法" class="headerlink" title="数值的表示方法"></a>数值的表示方法</h3><p>JavaScript 的数值有多种表示方法，可以用字面形式直接表示，比如 <code>35</code>（十进制）和 <code>0xFF</code>（十六进制）。</p>
+<p>数值也可以采用科学计数法表示，下面是几个科学计数法的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123e3</span>; <span class="comment">// 123000</span></span><br><span class="line"><span class="number">123e-3</span>; <span class="comment">// 0.123</span></span><br><span class="line"><span class="number">0.1e-23</span>;</span><br></pre></td></tr></table></figure>
+<p>以下两种情况，JavaScript 会自动将数值转为科学计数法表示，其他情况都采用字面形式直接表示。</p>
+<ul>
+<li>小数点前的数字多于 21 位</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1234567890123456789012</span><br><span class="line">// 1.2345678901234568e+21</span><br><span class="line"></span><br><span class="line">123456789012345678901</span><br><span class="line">// 123456789012345680000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>小数点后的零多于 5 个</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 小数点后紧跟5个以上的零，</span><br><span class="line">// 就自动转为科学计数法</span><br><span class="line">0.0000003 // 3e-7</span><br><span class="line"></span><br><span class="line">// 否则，就保持原来的字面形式</span><br><span class="line">0.000003 // 0.000003</span><br></pre></td></tr></table></figure>
+<h3 id="数值的进制"><a href="#数值的进制" class="headerlink" title="数值的进制"></a>数值的进制</h3><p>使用字面量（literal）直接表示一个数值时，JavaScript 对整数提供四种进制的表示方法：十进制、十六进制、八进制、二进制。</p>
+<ul>
+<li>十进制：没有前导 0 的数值。</li>
+<li>八进制：有前缀 <code>0o</code> 或 <code>0O</code> 的数值，或者有前导 <code>0</code>、且只用到 0-7 的八个阿拉伯数字的数值。</li>
+<li>十六进制：有前缀 <code>0x</code>或 <code>0X</code> 的数值。</li>
+<li>二进制：有前缀 <code>0b</code> 或 <code>0B</code> 的数值。</li>
+</ul>
+<p>默认情况下 JavaScript 内部都会自动进行进制转换，将八进制、十六进制、二进制转换为十进制。</p>
+<p>通常来说，有前导 0 的数值会被视为八进制，但是如果前导 0 后面有数字 8 和 9，则该数值被视为十进制。</p>
+<p>前导 0 表示八进制，处理时很容易造成混乱。ES5 的严格模式和 ES6，已经废除了这种表示法。</p>
+<h3 id="几个特殊数值"><a href="#几个特殊数值" class="headerlink" title="几个特殊数值"></a>几个特殊数值</h3><h4 id="正零和负零"><a href="#正零和负零" class="headerlink" title="正零和负零"></a>正零和负零</h4><p>JavaScript 内部实际上存在 2 个 0：一个是+0，一个是-0，区别就是 64 位浮点数表示法的符号位不同。它们是等价的。</p>
+<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p><code>NaN</code> 是 JavaScript 的特殊值，表示“非数字”（Not a Number），主要出现在将字符串解析成数字出错的场合。</p>
+<p>需要注意的是，NaN 不是独立的数据类型，而是一个特殊数值，它的数据类型依然属于 Number，使用 typeof 运算符可以看得很清楚。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span>; <span class="comment">//'number'</span></span><br></pre></td></tr></table></figure>
+<p>NaN 不等于任何值，包括它本身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>; <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>NaN 与任何数进行运算，得到的结果都是 NaN</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> + <span class="number">32</span>; <span class="comment">// NaN</span></span><br><span class="line"><span class="literal">NaN</span> - <span class="number">32</span>; <span class="comment">// NaN</span></span><br><span class="line"><span class="literal">NaN</span> * <span class="number">32</span>; <span class="comment">// NaN</span></span><br><span class="line"><span class="literal">NaN</span> / <span class="number">32</span>; <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="Infinity"><a href="#Infinity" class="headerlink" title="Infinity"></a>Infinity</h4><p>Infinity 表示“无穷”，用来表示两种场景。一种是一个正的数值太大，或一个负的数值太小，无法表示；另一种是非 0 数值除以 0，得到 Infinity</p>
+<p>Infinity 有正负之分，Infinity 表示正的无穷，-Infinity 表示负的无穷。</p>
+<h3 id="全局方法"><a href="#全局方法" class="headerlink" title="全局方法"></a>全局方法</h3><h4 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt()"></a>parseInt()</h4><p><code>parseInt</code>方法用于将字符串转换为整数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'233'</span>); <span class="comment">//233</span></span><br></pre></td></tr></table></figure>
+<p>如果<code>parseInt</code>的参数不是字符串，会先转换为字符串:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">1.21</span>); <span class="comment">//1</span></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'1.21'</span>); <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>字符串转为整数的时候，是一个个字符依次转换，如果遇到不能转为数字的字符，就不再进行下去，返回已经转好的部分。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'8a'</span>); <span class="comment">// 8</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'12**'</span>); <span class="comment">// 12</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'12.34'</span>); <span class="comment">// 12</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'15e2'</span>); <span class="comment">// 15</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'15px'</span>); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<p>如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回<code>NaN</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'abc'</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'.3'</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">''</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'+'</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'+1'</span>); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>如果字符串以 0x 或 0X 开头，parseInt 会将其按照十六进制数解析。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0x10'</span>); <span class="comment">// 16</span></span><br></pre></td></tr></table></figure>
+<p>如果字符串以 0 开头，将其按照 10 进制解析。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'011'</span>); <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
+<p>对于那些会自动转为科学计数法的数字，parseInt 会将科学计数法的表示方法视为字符串，因此导致一些奇怪的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000000000000000000000.5</span>); <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'1e+21'</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">0.0000008</span>); <span class="comment">// 8</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'8e-7'</span>); <span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+<h4 id="parseFloat"><a href="#parseFloat" class="headerlink" title="parseFloat()"></a>parseFloat()</h4><p><code>parseFloat</code> 方法用于将一个字符串转换为浮点数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'3.1415926'</span>); <span class="comment">//3.1415926</span></span><br></pre></td></tr></table></figure>
+<p>如果字符串符合科学计数法，则会进行相应的转换；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'314e-2'</span>); <span class="comment">//3.14</span></span><br></pre></td></tr></table></figure>
+<p>如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回 NaN</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>([]); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'FF2'</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">''</span>); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<p><code>parseFloat</code>和<code>Number</code>函数的转换不同，看个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="literal">true</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="literal">null</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>); <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">''</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">''</span>); <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'123.45#'</span>); <span class="comment">// 123.45</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'123.45#'</span>); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="isNaN"><a href="#isNaN" class="headerlink" title="isNaN()"></a>isNaN()</h4><p><code>isNaN</code>方法可以判断一个值是否为<code>NaN</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="number">123</span>); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，<code>isNaN</code>只对数值有效，如果传入其他只，则会发生类型转换，先转换成数值。传入字符串的时候，字符串会先被转换成<code>NaN</code>，所以会返回<code>true</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="string">'abc'</span>); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isNaN</span>(&#123;&#125;); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isNaN</span>([]); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>判断<code>NaN</code>更可靠的方法，利用<code>NaN</code>为唯一不等于自身这个特点，进行判断：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myIsNaN</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value !== value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="isFinite"><a href="#isFinite" class="headerlink" title="isFinite()"></a>isFinite()</h4><p><code>isFinite</code>方法返回一个布尔值，表示某个值是否为正常的数值，举个栗子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isFinite</span>(<span class="literal">Infinity</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="literal">NaN</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="literal">undefined</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="literal">null</span>); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">isFinite</span>(<span class="number">3.14</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>除了<code>Infinity</code>、<code>-Infinity</code>、<code>NaN</code>和<code>undefined</code>这几个值会返回<code>false</code>，isFinite 对于其他的数值都会返回<code>true</code>。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>单引号和双引号内部都可以相互使用，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'"hello"world'</span>;</span><br><span class="line"><span class="string">"'Java'Script"</span>;</span><br></pre></td></tr></table></figure>
+<p>如果要在单引号内部使用单引号，那么就需要对单引号前边加上反斜杠进行转义，双引号同理，如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'she say \'hello world\''</span>;</span><br></pre></td></tr></table></figure>
+<p>因为 HTML 语言属性使用双引号，所以一般情况下约定字符串使用单引号，字符串默认写在一行内，多行要在每行结尾添加反斜杠，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longString =</span><br><span class="line">    <span class="string">'this is a long \</span></span><br><span class="line"><span class="string">string'</span>;</span><br></pre></td></tr></table></figure>
+<p>字符串可以用连接运算符（<code>+</code>）进行连接单行输出，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longString = <span class="string">'this is a long '</span> + <span class="string">'string'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h4><p>反斜杠在字符串内有特殊含义，用来表示一些特殊字符，所以被称为转义符，需要使用反斜杠转义的特殊字符，常见的有下边几个：</p>
+<ul>
+<li><code>\0</code>: null (<code>\u0000</code>)</li>
+<li><code>\b</code>: 后退键 (<code>\u0008</code>)</li>
+<li><code>\f</code> ：换页符（<code>\u000C</code>）</li>
+<li><code>\n</code> ：换行符（<code>\u000A</code>）</li>
+<li><code>\r</code>：回车键（<code>\u000D</code>）</li>
+<li><code>\t</code> ：制表符（<code>\u0009</code>）</li>
+<li><code>\v</code> ：垂直制表符（<code>\u000B</code>）</li>
+<li><code>\&#39;</code> ：单引号（<code>\u0027</code>）</li>
+<li><code>\&quot;</code> ：双引号（<code>\u0022</code>）</li>
+<li><code>\\</code> ：反斜杠（<code>\u005C</code>）</li>
+</ul>
+<h4 id="字符串类数组方法"><a href="#字符串类数组方法" class="headerlink" title="字符串类数组方法"></a>字符串类数组方法</h4><p>字符串可以进行数组的方括号运算符，可以返回指定位置的字符，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'maomao'</span>;</span><br><span class="line">str[<span class="number">0</span>]; <span class="comment">//"m"</span></span><br><span class="line">str[<span class="number">4</span>]; <span class="comment">//"a"</span></span><br><span class="line"><span class="comment">//如果给定的数字超过字符串的长度或者给定的不适数字，则返回undefined</span></span><br><span class="line">str[<span class="string">'a'</span>]; <span class="comment">//undefined</span></span><br><span class="line">str[<span class="number">9</span>]; <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>虽然字符串与数组很相似，但是，无法像数组一样改变指定位置的字符，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newStr = <span class="string">'new string'</span>;</span><br><span class="line">newStr[<span class="number">0</span>] = <span class="string">'a'</span>;</span><br><span class="line">newStr; <span class="comment">//"new string"</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串长度（length-属性）"><a href="#字符串长度（length-属性）" class="headerlink" title="字符串长度（length 属性）"></a>字符串长度（length 属性）</h4><p><code>length</code>属性返回字符串的长度，同理，和上边类似，这个属性是无法像数组那样改变的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'hello world'</span>;</span><br><span class="line">str.length; <span class="comment">//11</span></span><br><span class="line">str.length = <span class="number">5</span>;</span><br><span class="line">str.length; <span class="comment">//11</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h3><p>JavaScript 使用的是 Unicode 字符集，不仅存储字符使用 Unicode 码，而且可以直接在程序里使用 Unicode 表示字符，即用<code>\uxxxx</code>的形式，其中，<code>xxxx</code>表示该字符的 Unicode 码，如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">'\u00A9'</span>;</span><br><span class="line">c; <span class="comment">//"©"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Base64-转码"><a href="#Base64-转码" class="headerlink" title="Base64 转码"></a>Base64 转码</h3><p>有些场景下，文本里会包含一些不可打印的符号，这时候就需要使用 Base64 编码，将它们转换成可以打印的字符。Base64 是一种编码方法，可以将任意值转换为 0~9、A ~ Z 、a ~ z、+和 / 这 64 个字符串组成的可打印字符。JavaScript 原生提供了两个 Base64 相关方法：</p>
+<ul>
+<li><code>btoa()</code>： 任意值转换为 Base64 编码</li>
+<li><code>atob()</code>： Base64 编码转换为原来的值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'JavaSCript'</span>;</span><br><span class="line">btoa(str); <span class="comment">//"SmF2YVNDcmlwdA=="</span></span><br><span class="line">atob(<span class="string">'SmF2YVNDcmlwdA=='</span>);</span><br><span class="line"><span class="comment">//"JavaSCript"</span></span><br></pre></td></tr></table></figure>
+<p>在实际中，我们可能需要将非 ASCII 码的字符转换为 Base64 编码，这个时候必须在中间插入一下转码环节，给个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b64Encode</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> btoa(<span class="built_in">encodeURIComponent</span>(str));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b64Decode</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(atob(str));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b64Encode(<span class="string">'我爱前端'</span>);</span><br><span class="line"><span class="comment">//"JUU2JTg4JTkxJUU3JTg4JUIxJUU1JTg5JThEJUU3JUFCJUFG"</span></span><br><span class="line"></span><br><span class="line">b64Decode(<span class="string">'JUU2JTg4JTkxJUU3JTg4JUIxJUU1JTg5JThEJUU3JUFCJUFG'</span>);</span><br><span class="line"><span class="comment">//"我爱前端"</span></span><br></pre></td></tr></table></figure>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h3><p>对象（object）是 JavaScript 语言的核心概念，是最重要的数据类型。啥是对象？简单来讲，就是一种（堆）无序复合数据的集合，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Jack'</span>,</span><br><span class="line">    age; <span class="number">42</span>,</span><br><span class="line">    job: <span class="string">'teacher'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="键名"><a href="#键名" class="headerlink" title="键名"></a>键名</h4><p>对象的所有键名都是字符串，可以加引号，也可以不加引号，如果键名不符合标识名的条件，则必须加上引号，否则会报错，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> another = &#123;</span><br><span class="line">    <span class="string">'1p'</span>: <span class="string">'hey'</span>,</span><br><span class="line">    <span class="string">'h i'</span>: <span class="string">'hi'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对象的每一个键名叫做<code>属性</code>（property），它的键值可以是任何数据类型。如果一个属性的值为函数，通常这个属性被称为<code>方法</code>，它可以像函数一样调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Jack'</span>,</span><br><span class="line">    sayHi: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.sayHi(); <span class="comment">//hi</span></span><br></pre></td></tr></table></figure>
+<h4 id="对象的引用"><a href="#对象的引用" class="headerlink" title="对象的引用"></a>对象的引用</h4><p>如果不同的变量名指向同一个对象，那么它们都是这个对象的引用，指向同一个内存地址，修改其中的一个，会影响到其他所有的变量，看个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = person;</span><br><span class="line">person1.name; <span class="comment">//"Tom"</span></span><br><span class="line"><span class="keyword">var</span> person2 = person;</span><br><span class="line">person2.name; <span class="comment">//"Tom"</span></span><br><span class="line"></span><br><span class="line">person1.name = <span class="string">'Karsa'</span>;</span><br><span class="line">person2.name; <span class="comment">//"Karsa"</span></span><br></pre></td></tr></table></figure>
+<h3 id="属性的操作"><a href="#属性的操作" class="headerlink" title="属性的操作"></a>属性的操作</h3><h4 id="属性的读取"><a href="#属性的读取" class="headerlink" title="属性的读取"></a>属性的读取</h4><p>读取对象的属性，有两种方法，一种是使用点运算符，一种是使用方括号运算符，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'karsa'</span>,</span><br><span class="line">    age: <span class="number">43</span>,</span><br><span class="line">    job: <span class="string">'teacher'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.name; <span class="comment">//"karsa"</span></span><br><span class="line">person[<span class="string">'age'</span>]; <span class="comment">//43</span></span><br></pre></td></tr></table></figure>
+<h4 id="属性的赋值"><a href="#属性的赋值" class="headerlink" title="属性的赋值"></a>属性的赋值</h4><p>点运算和方括号运算符不仅可以读取，还可以赋值:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接上边代码</span></span><br><span class="line">person.name = <span class="string">'Jack'</span>;</span><br><span class="line">person[<span class="string">'age'</span>] = <span class="number">32</span>;</span><br></pre></td></tr></table></figure>
+<p>JavaScript 允许属性的“后绑定”，也就是说，你可以在任意时刻新增属性，没必要在定义对象的时候，就定义好属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接上边代码</span></span><br><span class="line">person.weight = <span class="string">'78kg'</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="对象属性的查看"><a href="#对象属性的查看" class="headerlink" title="对象属性的查看"></a>对象属性的查看</h4><p>要查看一个对象本身的所有属性，可以使用<code>Object.keys</code>方法，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Rookie'</span>,</span><br><span class="line">    age: <span class="number">22</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(person);</span><br><span class="line"><span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="对象属性的删除"><a href="#对象属性的删除" class="headerlink" title="对象属性的删除"></a>对象属性的删除</h4><p><code>delete</code>命令用于删除对象属性，删除成功后悔返回<code>true</code>，如;</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Rookie'</span>,</span><br><span class="line">    age: <span class="number">22</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> person.age; <span class="comment">//true</span></span><br><span class="line">person.age; <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">Object</span>.keys(person); <span class="comment">//["name"]</span></span><br></pre></td></tr></table></figure>
+<p>比较有意思的是，删除一个不存在的属性，<code>delete</code>不会报错，而且还会返回<code>true</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="keyword">delete</span> person.name; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>只有一种情况，<code>delete</code>命令会返回<code>false</code>，那就是该属性存在，该属性的特征<code>configurable</code>为<code>false</code>（即不可删除），看个例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="built_in">Object</span>.defineProperty(&#123;&#125;, <span class="string">'name'</span>, &#123;</span><br><span class="line">    value: <span class="string">'Karsa'</span>,</span><br><span class="line">    configurable: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line">person.name; <span class="comment">//"Karsa"</span></span><br><span class="line"><span class="keyword">delete</span> person.name; <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>还有一点需要注意的是，<code>delete</code>命令只能删除对象本身的属性，无法删除继承的属性，举个栗子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="keyword">delete</span> person.toString(); <span class="comment">//true</span></span><br><span class="line">person.toString; <span class="comment">//ƒ toString() &#123; [native code] &#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>toString</code>是对象<code>person</code>继承的属性，虽然<code>delete</code>命令返回<code>true</code>，但该属性并没有被删除，依然存在。这个例子还说明，即使 <code>delete</code> 返回 <code>true</code>，该属性依然可能读取到值。</p>
+<h4 id="检查属性是否存在"><a href="#检查属性是否存在" class="headerlink" title="检查属性是否存在"></a>检查属性是否存在</h4><p><code>in</code>运算符用于检查对象是否包含某个属性，如果包含就返回<code>true</code>，反之返回<code>false</code>，演示如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Ding'</span>,</span><br><span class="line">    age: <span class="number">12</span>,</span><br><span class="line">    gender: <span class="string">'male'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> person; <span class="comment">//true</span></span><br><span class="line"><span class="string">'job'</span> <span class="keyword">in</span> person; <span class="comment">//false</span></span><br><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> person; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p><code>in</code>运算符虽然可以识别对象是否包含某个属性，但是却无法识别该属性是自身的还是继承而来的。这个时候就需要使用<code>hasOwnProperty</code>方法来判断一下，栗子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接上边代码</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'toString'</span> <span class="keyword">in</span> person) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(person.hasOwnProperty(<span class="string">'toString'</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h4 id="属性的遍历"><a href="#属性的遍历" class="headerlink" title="属性的遍历"></a>属性的遍历</h4><p><code>for...in</code>循环用来遍历一个对象的全部属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">'Ding'</span>,</span><br><span class="line">    age: <span class="number">12</span>,</span><br><span class="line">    gender: <span class="string">'male'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> $i <span class="keyword">in</span> person) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'键名: '</span>, $i);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'键值: '</span>, person[$i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//键名: name;</span></span><br><span class="line"><span class="comment">//键值:  Ding</span></span><br><span class="line"><span class="comment">//键名:  age</span></span><br><span class="line"><span class="comment">//键值:  12</span></span><br><span class="line"><span class="comment">//键名:  gender</span></span><br><span class="line"><span class="comment">//键值:  male</span></span><br></pre></td></tr></table></figure>
+<p>和<code>in</code>运算符类似，<code>for...in</code>循环会遍历所有可遍历（enumerable）的属性，不仅遍历自身属性，还会遍历继承的属性</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <p style="text-align:center;font-weight:600">- 正文完 -</p>
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>老铁觉得不错，就刷波火箭呗！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="PillarKerr 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="PillarKerr 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript学习笔记/" rel="tag"># JavaScript学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript学习笔记/JavaScript学习笔记之函数.html" rel="prev" title="JavaScript学习笔记 - 函数">
+                JavaScript学习笔记 - 函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://aw.adcdn.cc/images/2018/03/30/b42b673fa9468d314a8b93e1d0faec29.jpg"
+                alt="PillarKerr" />
+            
+              <p class="site-author-name" itemprop="name">PillarKerr</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DarrylKerr" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:job@cherrycookies.cc‍" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.instagram.com/konersunshine/" target="_blank" title="Instagram">
+                    
+                      <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/yy0115dd1017" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null-和-undefined"><span class="nav-number">1.</span> <span class="nav-text"><a href="#null-&#x548C;-undefined" class="headerlink" title="null &#x548C; undefined"></a>null &#x548C; undefined</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x6982;&#x8FF0;" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法和含义"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x7528;&#x6CD5;&#x548C;&#x542B;&#x4E49;" class="headerlink" title="&#x7528;&#x6CD5;&#x548C;&#x542B;&#x4E49;"></a>&#x7528;&#x6CD5;&#x548C;&#x542B;&#x4E49;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔值"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5E03;&#x5C14;&#x503C;" class="headerlink" title="&#x5E03;&#x5C14;&#x503C;"></a>&#x5E03;&#x5C14;&#x503C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6570;&#x503C;" class="headerlink" title="&#x6570;&#x503C;"></a>&#x6570;&#x503C;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述-1"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x6982;&#x8FF0;-1" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值精度"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x6570;&#x503C;&#x7CBE;&#x5EA6;" class="headerlink" title="&#x6570;&#x503C;&#x7CBE;&#x5EA6;"></a>&#x6570;&#x503C;&#x7CBE;&#x5EA6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值范围"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x6570;&#x503C;&#x8303;&#x56F4;" class="headerlink" title="&#x6570;&#x503C;&#x8303;&#x56F4;"></a>&#x6570;&#x503C;&#x8303;&#x56F4;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值的表示方法"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#&#x6570;&#x503C;&#x7684;&#x8868;&#x793A;&#x65B9;&#x6CD5;" class="headerlink" title="&#x6570;&#x503C;&#x7684;&#x8868;&#x793A;&#x65B9;&#x6CD5;"></a>&#x6570;&#x503C;&#x7684;&#x8868;&#x793A;&#x65B9;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值的进制"><span class="nav-number">3.5.</span> <span class="nav-text"><a href="#&#x6570;&#x503C;&#x7684;&#x8FDB;&#x5236;" class="headerlink" title="&#x6570;&#x503C;&#x7684;&#x8FDB;&#x5236;"></a>&#x6570;&#x503C;&#x7684;&#x8FDB;&#x5236;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几个特殊数值"><span class="nav-number">3.6.</span> <span class="nav-text"><a href="#&#x51E0;&#x4E2A;&#x7279;&#x6B8A;&#x6570;&#x503C;" class="headerlink" title="&#x51E0;&#x4E2A;&#x7279;&#x6B8A;&#x6570;&#x503C;"></a>&#x51E0;&#x4E2A;&#x7279;&#x6B8A;&#x6570;&#x503C;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正零和负零"><span class="nav-number">3.6.1.</span> <span class="nav-text"><a href="#&#x6B63;&#x96F6;&#x548C;&#x8D1F;&#x96F6;" class="headerlink" title="&#x6B63;&#x96F6;&#x548C;&#x8D1F;&#x96F6;"></a>&#x6B63;&#x96F6;&#x548C;&#x8D1F;&#x96F6;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NaN"><span class="nav-number">3.6.2.</span> <span class="nav-text"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Infinity"><span class="nav-number">3.6.3.</span> <span class="nav-text"><a href="#Infinity" class="headerlink" title="Infinity"></a>Infinity</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局方法"><span class="nav-number">3.7.</span> <span class="nav-text"><a href="#&#x5168;&#x5C40;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5168;&#x5C40;&#x65B9;&#x6CD5;"></a>&#x5168;&#x5C40;&#x65B9;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#parseInt"><span class="nav-number">3.7.1.</span> <span class="nav-text"><a href="#parseInt" class="headerlink" title="parseInt()"></a>parseInt()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parseFloat"><span class="nav-number">3.7.2.</span> <span class="nav-text"><a href="#parseFloat" class="headerlink" title="parseFloat()"></a>parseFloat()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isNaN"><span class="nav-number">3.7.3.</span> <span class="nav-text"><a href="#isNaN" class="headerlink" title="isNaN()"></a>isNaN()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isFinite"><span class="nav-number">3.7.4.</span> <span class="nav-text"><a href="#isFinite" class="headerlink" title="isFinite()"></a>isFinite()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;"></a>&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述-2"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x6982;&#x8FF0;-2" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">4.1.1.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4E49;" class="headerlink" title="&#x5B9A;&#x4E49;"></a>&#x5B9A;&#x4E49;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转义"><span class="nav-number">4.1.2.</span> <span class="nav-text"><a href="#&#x8F6C;&#x4E49;" class="headerlink" title="&#x8F6C;&#x4E49;"></a>&#x8F6C;&#x4E49;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串类数组方法"><span class="nav-number">4.1.3.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x6570;&#x7EC4;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x6570;&#x7EC4;&#x65B9;&#x6CD5;"></a>&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x6570;&#x7EC4;&#x65B9;&#x6CD5;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串长度（length-属性）"><span class="nav-number">4.1.4.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#xFF08;length-&#x5C5E;&#x6027;&#xFF09;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#xFF08;length &#x5C5E;&#x6027;&#xFF09;"></a>&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#xFF08;length &#x5C5E;&#x6027;&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符集"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x96C6;" class="headerlink" title="&#x5B57;&#x7B26;&#x96C6;"></a>&#x5B57;&#x7B26;&#x96C6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base64-转码"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#Base64-&#x8F6C;&#x7801;" class="headerlink" title="Base64 &#x8F6C;&#x7801;"></a>Base64 &#x8F6C;&#x7801;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;" class="headerlink" title="&#x5BF9;&#x8C61;"></a>&#x5BF9;&#x8C61;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述-3"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#&#x6982;&#x8FF0;-3" class="headerlink" title="&#x6982;&#x8FF0;"></a>&#x6982;&#x8FF0;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#键名"><span class="nav-number">5.1.1.</span> <span class="nav-text"><a href="#&#x952E;&#x540D;" class="headerlink" title="&#x952E;&#x540D;"></a>&#x952E;&#x540D;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的引用"><span class="nav-number">5.1.2.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;" class="headerlink" title="&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;"></a>&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的操作"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;&#x7684;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5C5E;&#x6027;&#x7684;&#x64CD;&#x4F5C;"></a>&#x5C5E;&#x6027;&#x7684;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性的读取"><span class="nav-number">5.2.1.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;&#x7684;&#x8BFB;&#x53D6;" class="headerlink" title="&#x5C5E;&#x6027;&#x7684;&#x8BFB;&#x53D6;"></a>&#x5C5E;&#x6027;&#x7684;&#x8BFB;&#x53D6;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性的赋值"><span class="nav-number">5.2.2.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;&#x7684;&#x8D4B;&#x503C;" class="headerlink" title="&#x5C5E;&#x6027;&#x7684;&#x8D4B;&#x503C;"></a>&#x5C5E;&#x6027;&#x7684;&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象属性的查看"><span class="nav-number">5.2.3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x67E5;&#x770B;" class="headerlink" title="&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x67E5;&#x770B;"></a>&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x67E5;&#x770B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象属性的删除"><span class="nav-number">5.2.4.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x5220;&#x9664;" class="headerlink" title="&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x5220;&#x9664;"></a>&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x5220;&#x9664;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查属性是否存在"><span class="nav-number">5.2.5.</span> <span class="nav-text"><a href="#&#x68C0;&#x67E5;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x5B58;&#x5728;" class="headerlink" title="&#x68C0;&#x67E5;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x5B58;&#x5728;"></a>&#x68C0;&#x67E5;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x5B58;&#x5728;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性的遍历"><span class="nav-number">5.2.6.</span> <span class="nav-text"><a href="#&#x5C5E;&#x6027;&#x7684;&#x904D;&#x5386;" class="headerlink" title="&#x5C5E;&#x6027;&#x7684;&#x904D;&#x5386;"></a>&#x5C5E;&#x6027;&#x7684;&#x904D;&#x5386;</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PillarKerr</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

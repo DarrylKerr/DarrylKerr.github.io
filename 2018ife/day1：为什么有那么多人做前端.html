@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="2018百度前端学院," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言知道百度前端学院很久了，但是每次总是错过时间。所以今年从过完年就一直留意官方的消息，终于赶在五一前，官方上线了课程。自己之前通过w3cschool、慕课网等学习了一些关于HTML和CSS的知识，通过小红书（JavaScript高级程序设计第三版），掌握了一点JavaScript的基础知识。这次希望借着这个平台，能够系统的学习前端所需的知识。">
+<meta name="keywords" content="2018百度前端学院">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day1：为什么有那么多人做前端？">
+<meta property="og:url" content="https://ife.adcdn.cc/2018ife/day1：为什么有那么多人做前端.html">
+<meta property="og:site_name" content="2018IFE Notes">
+<meta property="og:description" content="前言知道百度前端学院很久了，但是每次总是错过时间。所以今年从过完年就一直留意官方的消息，终于赶在五一前，官方上线了课程。自己之前通过w3cschool、慕课网等学习了一些关于HTML和CSS的知识，通过小红书（JavaScript高级程序设计第三版），掌握了一点JavaScript的基础知识。这次希望借着这个平台，能够系统的学习前端所需的知识。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://aw.adcdn.cc/images/2018/04/24/42aa84b2dcbd30a3e903a60163b0c0bc.jpg">
+<meta property="og:image" content="https://aw.adcdn.cc/images/2018/04/24/e3298bd26a692cb43f247bbf2ec7160a.jpg">
+<meta property="og:image" content="https://aw.adcdn.cc/images/2018/04/24/c2b109484ab2136f14df843557a3689b.jpg">
+<meta property="og:image" content="https://aw.adcdn.cc/images/2018/04/24/2d1ce44677d546f27a2e3a08f949860f.jpg">
+<meta property="og:updated_time" content="2018-04-24T10:34:58.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="day1：为什么有那么多人做前端？">
+<meta name="twitter:description" content="前言知道百度前端学院很久了，但是每次总是错过时间。所以今年从过完年就一直留意官方的消息，终于赶在五一前，官方上线了课程。自己之前通过w3cschool、慕课网等学习了一些关于HTML和CSS的知识，通过小红书（JavaScript高级程序设计第三版），掌握了一点JavaScript的基础知识。这次希望借着这个平台，能够系统的学习前端所需的知识。">
+<meta name="twitter:image" content="https://aw.adcdn.cc/images/2018/04/24/42aa84b2dcbd30a3e903a60163b0c0bc.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ife.adcdn.cc/2018ife/day1：为什么有那么多人做前端.html"/>
+
+
+
+
+
+  <title>day1：为什么有那么多人做前端？ | 2018IFE Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">2018IFE Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Quick notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ife.adcdn.cc/2018ife/day1：为什么有那么多人做前端.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PillarKerr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://aw.adcdn.cc/images/2018/03/30/b42b673fa9468d314a8b93e1d0faec29.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="2018IFE Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">day1：为什么有那么多人做前端？</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T00:00:00+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/2018ife/" itemprop="url" rel="index">
+                    <span itemprop="name">2018ife</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-line-chart"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>知道百度前端学院很久了，但是每次总是错过时间。所以今年从过完年就一直留意官方的消息，终于赶在五一前，官方上线了课程。自己之前通过w3cschool、慕课网等学习了一些关于HTML和CSS的知识，通过小红书（JavaScript高级程序设计第三版），掌握了一点JavaScript的基础知识。这次希望借着这个平台，能够系统的学习前端所需的知识。</p>
+<a id="more"></a>
+<h2 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h2><h3 id="什么是web"><a href="#什么是web" class="headerlink" title="什么是web"></a>什么是web</h3><blockquote>
+<p>web一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。</p>
+</blockquote>
+<p>有点绕，这段话读起来，我个人理解，如下图，web可以理解成为一个分布式的媒体系统(点对点)。<br><img src="https://aw.adcdn.cc/images/2018/04/24/42aa84b2dcbd30a3e903a60163b0c0bc.jpg" alt="万维网"></p>
+<h3 id="什么是HTML，CSS，JavaSCript"><a href="#什么是HTML，CSS，JavaSCript" class="headerlink" title="什么是HTML，CSS，JavaSCript"></a>什么是HTML，CSS，JavaSCript</h3><p>首先说<code>HTML</code>，超文本标记语言（HyperText MarkUp language），与<code>txt文档</code>一样，是一种文档，目的是为浏览器用户提供统一的界面呈现而制定，与<code>txt文档</code>，不一样的是<code>HTML</code>具有结构化的特征。<code>HTML</code>个人可以理解成一个页面的基础（内容）。<code>HTML</code>由一系列的标签（也叫做元素）组成。一般的，一个完整的标签声明，包含一个开始标记，标签的内容以及一个结束标记。如下图：<br><img src="https://aw.adcdn.cc/images/2018/04/24/e3298bd26a692cb43f247bbf2ec7160a.jpg" alt="html标签"></p>
+<p>接下来说<code>CSS</code>，层叠样式表（Cascading Style Sheets），它的作用简单来说，就是美化你的页面，比如，你想让标题醒目一点，可以给它设置一个醒目颜色（如红色），大一点的字号（如30px），而且是加粗显示。如下图：<br><img src="https://aw.adcdn.cc/images/2018/04/24/c2b109484ab2136f14df843557a3689b.jpg" alt="CSS层叠样式表"><br>和HTML一样，CSS也不是真正的编程语言。它是样式表语言，也就是说，它允许你有选择性地为 HTML 文档的元素添加样式。</p>
+<p><code>JavaScript</code>，是一门编程语言，可以为你的网站添加丰富的交互功能，比如用户点击按钮之后的处理，图片的轮播，检测用户输入的表单数据是否合法等等。如下图，当点击按钮之后会弹出一个警告框，显示提示信息！<br><img src="https://aw.adcdn.cc/images/2018/04/24/2d1ce44677d546f27a2e3a08f949860f.jpg" alt="JavaScript"></p>
+<p>如果说<code>HTML</code>是搭建网页基础内容，<code>CSS</code>是美化你的网页，<code>JavaScript</code>则可以让你的网页动起来。</p>
+<blockquote>
+<p>HTML是名词，CSS是形容词，JavaScript是动词。三个互相配合才是一句句子</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <p style="text-align:center;font-weight:600">- 正文完 -</p>
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>老铁觉得不错，就刷波火箭呗！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="PillarKerr 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="PillarKerr 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/2018百度前端学院/" rel="tag"># 2018百度前端学院</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JavaScript学习笔记/ECMAScript6入门之基础篇.html" rel="next" title="ECMAScript 6 入门之基础篇">
+                <i class="fa fa-chevron-left"></i> ECMAScript 6 入门之基础篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018ife/No.1 - 制作一个简单的菜单动画效果.html" rel="prev" title="No.1-制作一个简单的菜单动画效果">
+                No.1-制作一个简单的菜单动画效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://aw.adcdn.cc/images/2018/03/30/b42b673fa9468d314a8b93e1d0faec29.jpg"
+                alt="PillarKerr" />
+            
+              <p class="site-author-name" itemprop="name">PillarKerr</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/DarrylKerr" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:job@cherrycookies.cc‍" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.instagram.com/konersunshine/" target="_blank" title="Instagram">
+                    
+                      <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/yy0115dd1017" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正题"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6B63;&#x9898;" class="headerlink" title="&#x6B63;&#x9898;"></a>&#x6B63;&#x9898;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是web"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;web" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;web"></a>&#x4EC0;&#x4E48;&#x662F;web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是HTML，CSS，JavaSCript"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;HTML&#xFF0C;CSS&#xFF0C;JavaSCript" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;HTML&#xFF0C;CSS&#xFF0C;JavaSCript"></a>&#x4EC0;&#x4E48;&#x662F;HTML&#xFF0C;CSS&#xFF0C;JavaSCript</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PillarKerr</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
